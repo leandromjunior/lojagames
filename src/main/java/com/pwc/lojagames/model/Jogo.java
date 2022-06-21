@@ -1,32 +1,35 @@
-package datasource.model;
+package com.pwc.lojagames.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Entity
+@Entity //é uma entidade do BD
 public class Jogo {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(length=70)
 	private String nome;
-	private String plataforma;
-	private String categoria;
-	private String preco;
 	
-	@Column(name = "id_fornecedor")
-	private Long idFornecedor;
-
-	public Jogo(Long id, String nome, String plataforma, String categoria, String preco, Long idFornecedor) {
-		
-		this.id = id;
-		this.nome = nome;
-		this.plataforma = plataforma;
-		this.categoria = categoria;
-		this.preco = preco;
-		this.idFornecedor = idFornecedor;
-	}
+	@Column(length=50)
+	private String plataforma;
+	
+	@Column(length=50)
+	private String categoria;
+	
+	@Column(length=10)
+	private Float preco;
+	
+	@ManyToOne //Pode ter vários jogos para um fornecedor
+	@JoinColumn(name = "id_fornecedor")
+	private Jogo jogo;
 
 	public Long getId() {
 		return id;
@@ -60,22 +63,22 @@ public class Jogo {
 		this.categoria = categoria;
 	}
 
-	public String getPreco() {
+	public Float getPreco() {
 		return preco;
 	}
 
-	public void setPreco(String preco) {
+	public void setPreco(Float preco) {
 		this.preco = preco;
 	}
 
-	public Long getIdFornecedor() {
-		return idFornecedor;
+	public Jogo getJogo() {
+		return jogo;
 	}
 
-	public void setIdFornecedor(Long idFornecedor) {
-		this.idFornecedor = idFornecedor;
+	public void setJogo(Jogo jogo) {
+		this.jogo = jogo;
 	}
-	
+
 	
 	
 	
