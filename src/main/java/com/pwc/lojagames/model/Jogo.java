@@ -29,7 +29,7 @@ public class Jogo {
 	
 	@ManyToOne //Pode ter vários jogos para um fornecedor
 	@JoinColumn(name = "id_fornecedor")
-	private Jogo jogo;
+	private Fornecedor fornecedor;
 
 	public Long getId() {
 		return id;
@@ -71,12 +71,12 @@ public class Jogo {
 		this.preco = preco;
 	}
 
-	public Jogo getJogo() {
-		return jogo;
+	public Fornecedor getFornecedor() {
+		return fornecedor;
 	}
 
-	public void setJogo(Jogo jogo) {
-		this.jogo = jogo;
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 
 	

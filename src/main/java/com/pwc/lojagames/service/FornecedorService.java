@@ -2,6 +2,7 @@ package com.pwc.lojagames.service;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,29 @@ public class FornecedorService {
 	//GET By ID
 	public Fornecedor listaporid(Long id) {
 		return findOrFail(id);
+	}
+	
+	//POST
+	public Fornecedor salvarfornecedor(Fornecedor fornece) {
+		fornece.getJogo().forEach(j -> j.setFornecedor(fornece));
+		return fornecedorRepository.save(fornece);
+	}
+	
+	//PUT
+	public Fornecedor atualizarFornecedor(Long id, Fornecedor fornece) {
+		Fornecedor fornecedorSalvo = findOrFail(id);
+		fornecedorSalvo.getJogo().clear();
+		fornecedorSalvo.getJogo().addAll(fornece.getJogo());
+		
+		BeanUtils.copyProperties(fornece, fornecedorSalvo, "id", "jogo"); //Copia as propriedades de fornecedor, menos id e jogo que já foram tratados acima
+		
+		return fornecedorRepository.save(fornecedorSalvo);
+	}
+	
+	//DELETE
+	public void deletarFornecedor(Long id) {
+		Fornecedor f = findOrFail(id);
+		fornecedorRepository.delete(f);
 	}
 	
 	private Fornecedor findOrFail(Long id) {
