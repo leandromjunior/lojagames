@@ -50,7 +50,7 @@ public class FornecedorService {
 	
 	//DELETE
 	public void deletarFornecedor(Long id) {
-		Fornecedor f = findOrFail(id);
+		Fornecedor f = findOrFail(id); 
 		fornecedorRepository.delete(f);
 	}
 	

@@ -8,7 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
@@ -22,9 +26,7 @@ public class Fornecedor {
 	@Column(nullable = false, length=70)
 	private String nome;
 	
-	@Column(length=10)
-	private Float sugestao;
-	
+	@JsonIgnoreProperties("fornecedor")
 	@OneToMany(mappedBy = "fornecedor")
 	private List<Jogo> jogo = new ArrayList<>();
 
@@ -42,14 +44,6 @@ public class Fornecedor {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Float getSugestao() {
-		return sugestao;
-	}
-
-	public void setSugestao(Float sugestao) {
-		this.sugestao = sugestao;
 	}
 
 	public List<Jogo> getJogo() {
