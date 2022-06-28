@@ -7,25 +7,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import lombok.EqualsAndHashCode;
+import javax.validation.constraints.NotBlank;
 
 @Entity //é uma entidade do BD
 public class Jogo {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer cod;
+	private Long id;
 	
+	@NotBlank
 	@Column(length=70)
 	private String nome;
 	
+	@NotBlank
 	@Column(length=50)
 	private String plataforma;
 	
+	@NotBlank
 	@Column(length=50)
 	private String categoria;
 	
+	@NotBlank
 	@Column(length=10)
 	private Float preco;
 	
@@ -35,14 +38,14 @@ public class Jogo {
 	@JoinColumn(name = "id_fornecedor")
 	private Fornecedor fornecedor;
 
-	public Integer getCod() {
-		return cod;
+	public Long getId() {
+		return id;
 	}
 
 
 
-	public void setCod(Integer cod) {
-		this.cod = cod;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 

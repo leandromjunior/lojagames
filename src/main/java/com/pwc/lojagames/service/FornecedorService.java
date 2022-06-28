@@ -40,8 +40,12 @@ public class FornecedorService {
 	//PUT
 	public Fornecedor atualizarFornecedor(Long id, Fornecedor fornece) {
 		Fornecedor fornecedorSalvo = findOrFail(id);
+		
 		fornecedorSalvo.getJogo().clear();
+		
 		fornecedorSalvo.getJogo().addAll(fornece.getJogo());
+		
+		fornecedorSalvo.getJogo().forEach(c -> c.setFornecedor(fornecedorSalvo));
 		
 		BeanUtils.copyProperties(fornece, fornecedorSalvo, "id", "jogo"); //Copia as propriedades de fornecedor, menos id e jogo que já foram tratados acima
 		
