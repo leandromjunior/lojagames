@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
+
 @Entity //é uma entidade do BD
 public class Jogo {
 	
@@ -28,7 +29,6 @@ public class Jogo {
 	@Column(length=50)
 	private String categoria;
 	
-	@NotBlank
 	@Column(length=10)
 	private Float preco;
 	

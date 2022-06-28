@@ -30,12 +30,10 @@ public class Fornecedor {
 	@ApiModelProperty(value = "Nome do fornecedor não pode ser vazio")
 	private String nome;
 	
-	@NotBlank
 	@Column(nullable = false, length=70)
 	@ApiModelProperty(value = "Avaliação do fornecedor não pode ser vazio")
 	private Float avaliacao;
 	
-	@NotBlank
 	@Column(nullable = false, length=70)
 	@ApiModelProperty(value = "Código do fornecedor não pode ser vazio")
 	private Integer codigo;
